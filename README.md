@@ -74,6 +74,9 @@ exports['azs-xpsystem']:ShowXPUI()
 exports['azs-xpsystem']:HideXPUI()
 ```
 
+## 🖼️ Peview
+
+
 ## 💬 Support
 [Discord](https://discord.gg/NvnXRKHyqT)<br>
 [Documentation](https://az-scripts.gitbook.io/az-scripts/free-resource/azs-xpsystem)
