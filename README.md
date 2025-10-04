@@ -74,7 +74,7 @@ exports['azs-xpsystem']:ShowXPUI()
 exports['azs-xpsystem']:HideXPUI()
 ```
 
-## 🖼️ Peview
+## 🖼️ Preview
 ## PREVIEW
 <img
     src="https://i.imgur.com/l0u2icP.png"
