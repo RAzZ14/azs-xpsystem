@@ -75,7 +75,13 @@ exports['azs-xpsystem']:HideXPUI()
 ```
 
 ## 🖼️ Peview
-
+## PREVIEW
+<img
+    src="https://i.imgur.com/l0u2icP.png"
+/>
+<img
+    src="https://i.imgur.com/gAhvwMQ.png"
+/>
 
 ## 💬 Support
 [Discord](https://discord.gg/NvnXRKHyqT)<br>
