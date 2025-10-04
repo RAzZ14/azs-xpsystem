@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AZS XP System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- SVG Definitions for Gradients -->
+    <svg width="0" height="0" style="position: absolute;">
+        <defs>
+            <linearGradient id="neonGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#00ffff;stop-opacity:1" />
+                <stop offset="25%" style="stop-color:#0080ff;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#8000ff;stop-opacity:1" />
+                <stop offset="75%" style="stop-color:#ff0080;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#ff8000;stop-opacity:1" />
+            </linearGradient>
+        </defs>
+    </svg>
+
+    <!-- Circular UI -->
+    <div id="circular-container" class="hidden">
+        <div class="xp-circle">
+            <svg class="progress-ring" width="120" height="120">
+                <circle class="progress-ring-background" cx="60" cy="60" r="50"></circle>
+                <circle class="progress-ring-circle" cx="60" cy="60" r="50"></circle>
+            </svg>
+            <div class="level-display">
+                <div class="level-number" id="circular-level">1</div>
+                <div class="level-text">LEVEL</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rectangular UI -->
+    <div id="rectangular-container" class="hidden">
+        <div class="rect-ui">
+            <div class="rect-info-bar">
+                <div class="rect-level-section">
+                    <span class="rect-level-label">LVL</span>
+                    <span class="rect-level-number" id="rectangular-level">1</span>
+                </div>
+                <div class="rect-xp-section">
+                    <span id="rect-current-xp">0</span> / <span id="rect-needed-xp">1000</span> XP
+                </div>
+            </div>
+            <div class="rect-progress-bar">
+                <div class="rect-progress-fill" id="rect-progress-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
