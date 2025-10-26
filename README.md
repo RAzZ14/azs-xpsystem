@@ -1,7 +1,7 @@
 
 # AZ SCRIPTS - XP AND LEVEL SYSTEM
 
-Modern XP and Leveling system for QBCore with dual UI styles and smooth animations.
+Modern XP and Leveling system for QBCore and ESX with dual UI styles and smooth animations.
 
 ## 📦 Installation
 
