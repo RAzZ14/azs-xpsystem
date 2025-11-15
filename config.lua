@@ -1,5 +1,8 @@
 Config = {}
 
+-- Framework Selection ('QBCore' or 'ESX')
+Config.Framework = 'QBCore'
+
 -- General Settings
 Config.MaxLevel = 100
 Config.BaseXPPerLevel = 1000
