@@ -1,9 +1,44 @@
-local QBCore = exports['qb-core']:GetCoreObject()
+-- Framework Detection
+local Framework = nil
 local isUIOpen = false
 local currentData = {}
 
 CreateThread(function()
-    while not LocalPlayer.state.isLoggedIn do
+    if Config.Framework == 'QBCore' then
+        Framework = exports['qb-core']:GetCoreObject()
+    elseif Config.Framework == 'ESX' then
+        Framework = exports['es_extended']:getSharedObject()
+    end
+end)
+
+-- Framework Wrapper Functions
+local function TriggerCallback(name, cb, ...)
+    if Config.Framework == 'QBCore' then
+        Framework.Functions.TriggerCallback(name, cb, ...)
+    elseif Config.Framework == 'ESX' then
+        Framework.TriggerServerCallback(name, cb, ...)
+    end
+end
+
+local function Notify(message, type, duration)
+    if Config.Framework == 'QBCore' then
+        Framework.Functions.Notify(message, type, duration)
+    elseif Config.Framework == 'ESX' then
+        Framework.ShowNotification(message)
+    end
+end
+
+local function IsPlayerLoaded()
+    if Config.Framework == 'QBCore' then
+        return LocalPlayer.state.isLoggedIn
+    elseif Config.Framework == 'ESX' then
+        return Framework.IsPlayerLoaded()
+    end
+    return false
+end
+
+CreateThread(function()
+    while not IsPlayerLoaded() do
         Wait(1000)
     end
     
@@ -12,7 +47,7 @@ CreateThread(function()
         uiStyle = Config.UIStyle
     })
     
-    QBCore.Functions.TriggerCallback('azs-xpsystem:server:getXPData', function(data)
+    TriggerCallback('azs-xpsystem:server:getXPData', function(data)
         if data then
             currentData = data
         end
@@ -51,7 +86,7 @@ RegisterCommand('togglexp', function()
     if isUIOpen then
         ToggleUI(false)
     else
-        QBCore.Functions.TriggerCallback('azs-xpsystem:server:getXPData', function(data)
+        TriggerCallback('azs-xpsystem:server:getXPData', function(data)
             if data then
                 ToggleUI(true, data)
             end
@@ -63,11 +98,11 @@ RegisterNetEvent('azs-xpsystem:client:updateXP', function(data)
     currentData = data
     
     if data.gained_xp > 0 then
-        QBCore.Functions.Notify(string.format(Config.Notifications.xpGained, data.gained_xp), 'success', 2000)
+        Notify(string.format(Config.Notifications.xpGained, data.gained_xp), 'success', 2000)
     end
     
     if data.leveled_up then
-        QBCore.Functions.Notify(string.format(Config.Notifications.levelUp, data.level), 'success', 3000)
+        Notify(string.format(Config.Notifications.levelUp, data.level), 'success', 3000)
     end
     
     ShowUITemporary(data)
@@ -86,7 +121,7 @@ exports('GetCurrentXPData', function()
 end)
 
 exports('ShowXPUI', function()
-    QBCore.Functions.TriggerCallback('azs-xpsystem:server:getXPData', function(data)
+    TriggerCallback('azs-xpsystem:server:getXPData', function(data)
         if data then
             ToggleUI(true, data)
         end
@@ -96,3 +131,14 @@ end)
 exports('HideXPUI', function()
     ToggleUI(false)
 end)
+
+-- command to add XP
+RegisterCommand('addxp', function(source, args, raw)
+    local amount = tonumber(args[1])
+    if amount and amount > 0 then
+        TriggerServerEvent('azs-xpsystem:server:addXP', amount)
+        Notify('Added ' .. amount .. ' XP.', 'success', 2000)
+    else
+        Notify('Usage: /addxp <amount>', 'error', 2000)
+    end
+end, false)
