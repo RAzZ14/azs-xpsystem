@@ -29,5 +29,7 @@ files {
 
 dependencies {
     'qb-core',
+    --'es_extended',
     'oxmysql'
 }
+
