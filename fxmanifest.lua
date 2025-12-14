@@ -4,7 +4,7 @@ lua54 'yes'
 
 author 'AZ Scripts'
 description 'XP and Level System for QBCore'
-version '1.0.0'
+version '1.0.1'
 
 shared_scripts {
     'config.lua'
@@ -32,4 +32,5 @@ dependencies {
     --'es_extended',
     'oxmysql'
 }
+
 
